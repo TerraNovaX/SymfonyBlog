@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  ###> Base de données MySQL ###
+  database:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+    ports:
+      - "3306:3306"
+    volumes:
+      - database_data:/var/lib/mysql
+    restart: unless-stopped
+  ###< Base de données MySQL ###
+
+  ###> PhpMyAdmin pour gérer MySQL ###
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: database
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - database
+  ###< PhpMyAdmin ###
+
+volumes:
+  ###> Données MySQL ###
+  database_data:
+  ###< Données MySQL ###
