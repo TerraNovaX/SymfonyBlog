@@ -1,0 +1,22 @@
+{
+  "php.validate.executablePath": "/opt/homebrew/bin/php",
+  "intelephense.files.exclude": [
+    "**/vendor/**",
+    "**/.git/**",
+    "**/var/**",
+    "**/node_modules/**"
+  ],
+  "files.exclude": {
+    "**/vendor": true,
+    "**/node_modules": true,
+    "**/var": true
+  },
+  "intelephense.environment.includePaths": [
+    "vendor/symfony",
+    "vendor/doctrine"
+  ],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
+}
