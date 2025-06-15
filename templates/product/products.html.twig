@@ -1,0 +1,45 @@
+{# templates/product/list.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+        <a href="{{ path('app_logout') }}" 
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+           style="text-decoration: none; padding: 8px 12px; background-color: #d9534f; color: white; border-radius: 4px;">
+           Déconnexion
+        </a>
+        <form id="logout-form" action="{{ path('app_logout') }}" method="POST" style="display: none;">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('logout') }}">
+        </form>
+        <a href="{{ path('user_profile_edit') }}">Modifier mon profil</a>
+    </div>
+
+    <h1>Liste des produits</h1>
+
+    <table>
+        <thead>
+            <tr>
+                
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    
+                    <td>{{ product.nom }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.prix }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="5">Aucun produit trouvé</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

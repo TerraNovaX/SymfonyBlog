@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background-color: #f2f2f2; }
+    .btn { padding: 6px 12px; margin-right: 4px; text-decoration: none; border: 1px solid #333; border-radius: 4px; }
+    .btn-add { background-color: #4CAF50; color: white; }
+    .btn-edit { background-color: #2196F3; color: white; }
+    .btn-delete { background-color: #f44336; color: white; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Admin Dashboard</h1>
+    <p>Bienvenue {{ app.user.nom }} {{ app.user.prenom }} ({{ app.user.email }})</p>
+
+    <a href="{{ path('app_logout') }}">Déconnexion</a>
+
+    <hr>
+
+    <a href="{{ path('product_new') }}" class="btn btn-add">Ajouter un produit</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prix</th>
+                <th>Catégorie</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.nom }}</td>
+                <td>{{ product.prix }} €</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.description }}</td>
+                <td>
+                    <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-edit">Modifier</a>
+                    <a href="{{ path('product_delete', {'id': product.id}) }}" class="btn btn-delete" 
+                       onclick="return confirm('Voulez-vous vraiment supprimer ce produit ?');">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="5">Aucun produit trouvé.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le produit{% endblock %}
+
+{% block body %}
+    <h1>Modifier le produit</h1>
+
+    {{ form_start(productForm) }}
+        {{ form_widget(productForm) }}
+        <button class="btn btn-primary">Enregistrer les modifications</button>
+    {{ form_end(productForm) }}
+
+    <a href="{{ path('admin_dashboard') }}">Retour au tableau de bord</a>
+{% endblock %}

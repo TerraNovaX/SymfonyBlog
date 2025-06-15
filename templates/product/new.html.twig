@@ -1,0 +1,16 @@
+{# templates/product/new.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un produit{% endblock %}
+
+{% block body %}
+    <h1>Créer un nouveau produit</h1>
+
+    {{ form_start(productForm) }}
+        {{ form_widget(productForm) }}
+        <button class="btn btn-primary">Créer</button>
+    {{ form_end(productForm) }}
+
+    <a href="{{ path('admin_dashboard') }}">Retour au tableau de bord</a>
+{% endblock %}

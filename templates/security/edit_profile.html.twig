@@ -1,0 +1,19 @@
+{# templates/user/edit_profile.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Profil{% endblock %}
+
+{% block body %}
+    <h1>Modifier votre profil</h1>
+
+    {{ form_start(profileForm) }}
+        {{ form_row(profileForm.nom) }}
+        {{ form_row(profileForm.prenom) }}
+        <button type="submit">Enregistrer</button>
+    {{ form_end(profileForm) }}
+
+    {% for message in app.flashes('browser') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+{% endblock %}
